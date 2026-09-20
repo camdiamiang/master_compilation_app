@@ -7,6 +7,7 @@ import 'screens/home_screen.dart';
 import 'screens/activity_one_screen.dart';
 import 'screens/activity_two_screen.dart';
 import 'screens/network_monitor_screen.dart';
+import 'screens/network_diagnostic_screen.dart';
 import 'screens/settings_screen.dart';
 import 'theme/app_theme.dart';
 
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
             '/': (context) => const HomeScreen(),
             '/activity1': (context) => const ActivityOneScreen(),
             '/activity2': (context) => const ActivityTwoScreen(),
-            '/activity3': (context) => const NetworkMonitorScreen(),
+            '/activity3': (context) => const NetworkDiagnosticScreen(),
+            '/network-monitor': (context) => const NetworkMonitorScreen(),
             '/settings': (context) => const SettingsScreen(),
           },
         );

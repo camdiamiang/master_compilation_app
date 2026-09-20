@@ -63,9 +63,9 @@ class HomeScreen extends StatelessWidget {
 
               // Activity 2
               ActivityCard(
-                title: 'Activity 2',
-                description: 'Second laboratory activity',
-                icon: Icons.phone_android_rounded,
+                title: 'Activity 2: Network monitor',
+                description: 'Handle Wi-Fi and Cellular handovers with queued requests',
+                icon: Icons.swap_calls_rounded,
                 accentColor: const Color(0xFFB06A25),
                 onTap: () {
                   Navigator.pushNamed(context, '/activity2');
@@ -76,9 +76,9 @@ class HomeScreen extends StatelessWidget {
 
               // Activity 3
               ActivityCard(
-                title: 'Network monitor',
-                description: 'Track your connection and requests',
-                icon: Icons.wifi_rounded,
+                title: 'Activity 3: Network diagnostic',
+                description: 'Measure speed, latency, and connection health',
+                icon: Icons.speed_rounded,
                 accentColor: const Color(0xFF3D9476),
                 onTap: () {
                   Navigator.pushNamed(context, '/activity3');

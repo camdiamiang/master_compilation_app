@@ -25,8 +25,8 @@ void main() {
       ),
     );
 
-    // Verify that the home screen is displayed.
-    expect(find.text('Master Compilation App'), findsOneWidget);
-    expect(find.text('Welcome! 👋'), findsOneWidget);
+    // Verify that the current home screen is displayed.
+    expect(find.text('Lab Companion'), findsOneWidget);
+    expect(find.text('Your activities'), findsOneWidget);
   });
 }
