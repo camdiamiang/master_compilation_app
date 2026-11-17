@@ -251,11 +251,26 @@ class NetworkProvider extends ChangeNotifier {
   }
 
   NetworkHealth _classifyHealth(NetworkDiagnosticResult result) {
-    final worstPing = max(result.idlePingMs, max(result.downloadPingMs, result.uploadPingMs));
-    if (result.packetLossPercent >= 34 || worstPing >= 1000) return NetworkHealth.degraded;
-    final bandwidth = min(result.downloadMbps, result.uploadMbps);
-    if (bandwidth > 10 && worstPing < 150) return NetworkHealth.excellent;
-    if (bandwidth >= 2 && worstPing < 400) return NetworkHealth.fair;
+    final worstPing = max(
+      result.idlePingMs,
+      max(result.downloadPingMs, result.uploadPingMs),
+    );
+    // Degraded: Heavy packet loss or extreme latency / timeouts
+    if (result.packetLossPercent >= 25 || worstPing >= 600) {
+      return NetworkHealth.degraded;
+    }
+    // Consider the primary download bandwidth, falling back to upload if download is 0
+    final bandwidth = result.downloadMbps > 0 ? result.downloadMbps : result.uploadMbps;
+    
+    // Excellent (> 10 Mbps)
+    if (bandwidth > 10.0 && worstPing < 150) {
+      return NetworkHealth.excellent;
+    }
+    // Fair (2 - 10 Mbps)
+    if (bandwidth >= 2.0 && worstPing < 400) {
+      return NetworkHealth.fair;
+    }
+    // Poor (< 2 Mbps)
     return NetworkHealth.poor;
   }
 

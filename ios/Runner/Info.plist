@@ -66,5 +66,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Master Compilation App requires location access for the Geofencing Tracker in Activity 5.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Activity 4 uses your local network to discover nearby devices and exchange chat messages with devices on the same Wi-Fi or hotspot.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Master Compilation App requires background location access for geofence entry and exit alerts.</string>
 </dict>
 </plist>

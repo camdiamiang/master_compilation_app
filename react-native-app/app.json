@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Fieldnotes — Lab Journal",
+    "slug": "fieldnotes-lab-journal",
+    "scheme": "fieldnotes",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "plugins": ["expo-router"],
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

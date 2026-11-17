@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../providers/app_provider.dart';
 import '../providers/network_provider.dart';
-import '../widgets/activity_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,83 +10,231 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appProvider = context.watch<AppProvider>();
-    final networkProvider = context.watch<NetworkProvider>();
+
+    final background = const Color(0xFFF2F1ED);
+    final darkGreen = const Color(0xFF123E35);
+    final softGreen = const Color(0xFFDAE7DF);
+    final softCard = const Color(0xFFF4F0EE);
+    final softTint = const Color(0xFFEFE9E3);
+    final textDark = const Color(0xFF1A1C1A);
+    final textSoft = const Color(0xFF5C6963);
+    final border = const Color(0xFFE2DED9);
+
+    final themeState = appProvider.isDarkMode;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Lab Companion',
-          style: TextStyle(fontWeight: FontWeight.w800),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.tune_rounded),
-            onPressed: () {
-              Navigator.pushNamed(context, '/settings');
-            },
-          ),
-        ],
-      ),
-
+      backgroundColor: background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
-
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _WelcomeHeader(
-                isDarkMode: appProvider.isDarkMode,
-                onToggleTheme: appProvider.toggleTheme,
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 28,
+                      color: textDark,
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Master compilation',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.8,
+                      color: Color(0xFF1B1D1B),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              _HomeOverview(isOnline: !networkProvider.isOffline),
-              const SizedBox(height: 28),
-              const Text('Your activities', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-              const SizedBox(height: 5),
-              Text('Choose a workspace to continue.', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .62))),
-              const SizedBox(height: 16),
-
-              // Activity 1
-              ActivityCard(
-                title: 'Activity 1',
-                description: 'First laboratory activity',
-                icon: Icons.grid_view_rounded,
-                accentColor: const Color(0xFFC85C3E),
-                onTap: () {
-                  Navigator.pushNamed(context, '/activity1');
-                },
-              ),
-
-              const SizedBox(height: 13),
-
-              // Activity 2
-              ActivityCard(
-                title: 'Activity 2: Network monitor',
-                description: 'Handle Wi-Fi and Cellular handovers with queued requests',
-                icon: Icons.swap_calls_rounded,
-                accentColor: const Color(0xFFB06A25),
-                onTap: () {
-                  Navigator.pushNamed(context, '/activity2');
-                },
-              ),
-
-              const SizedBox(height: 13),
-
-              // Activity 3
-              ActivityCard(
-                title: 'Activity 3: Network diagnostic',
-                description: 'Measure speed, latency, and connection health',
-                icon: Icons.speed_rounded,
-                accentColor: const Color(0xFF3D9476),
-                onTap: () {
-                  Navigator.pushNamed(context, '/activity3');
-                },
-              ),
-
               const SizedBox(height: 24),
-
-              _LearningNote(),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(18, 18, 18, 20),
+                decoration: BoxDecoration(
+                  color: darkGreen,
+                  borderRadius: BorderRadius.circular(26),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'FIELDNOTES / LAB 05',
+                          style: TextStyle(
+                            color: Color(0xFFD7E6E1),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.4,
+                          ),
+                        ),
+                        Container(
+                          width: 46,
+                          height: 46,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE7E6E5),
+                            borderRadius: BorderRadius.circular(23),
+                          ),
+                          child: const Icon(
+                            Icons.settings_outlined,
+                            color: darkGreen,
+                            size: 24,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 14),
+                    const Text(
+                      'Master compilation',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 42,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -1.5,
+                        height: 1.0,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    const Text(
+                      'A closer look at the ideas and skills behind this build.',
+                      style: TextStyle(
+                        color: Color(0xFFE3ECE8),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        height: 1.35,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFD9E9E3),
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: const Text(
+                        'IN PROGRESS',
+                        style: TextStyle(
+                          color: darkGreen,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 26),
+              const Text(
+                'What you\'ll explore',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.8,
+                  color: textDark,
+                ),
+              ),
+              const SizedBox(height: 6),
+              const Text(
+                'The building blocks of this activity.',
+                style: TextStyle(
+                  color: textSoft,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 18),
+              _ExploreRow(
+                number: '01',
+                title: 'Build a home dashboard and screen menu',
+              ),
+              _ExploreRow(
+                number: '02',
+                title: 'Navigate through the lab collection',
+              ),
+              _ExploreRow(
+                number: '03',
+                title: 'Personalize a shared theme and profile',
+              ),
+              const SizedBox(height: 18),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: softGreen,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'THE BIG IDEA',
+                      style: TextStyle(
+                        color: darkGreen,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1.4,
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      'Good mobile experiences feel clear, considered, and at home on every screen.',
+                      style: TextStyle(
+                        color: textDark,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        height: 1.2,
+                        letterSpacing: -0.6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 22),
+              SizedBox(
+                width: double.infinity,
+                height: 58,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/settings');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: darkGreen,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_back_rounded, size: 24),
+                      SizedBox(width: 10),
+                      Text(
+                        'Back to the collection',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -96,102 +243,61 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class _WelcomeHeader extends StatelessWidget {
-  const _WelcomeHeader({
-    required this.isDarkMode,
-    required this.onToggleTheme,
-  });
+class _ExploreRow extends StatelessWidget {
+  const _ExploreRow({required this.number, required this.title});
 
-  final bool isDarkMode;
-  final VoidCallback onToggleTheme;
+  final String number;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(22),
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFA94732), Color(0xFFD76F47), Color(0xFFF0A156)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(25),
-        boxShadow: const [BoxShadow(color: Color(0x3D9B3F2C), blurRadius: 20, offset: Offset(0, 10))],
+        color: const Color(0xFFF5F3F1),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE6E1DC)),
       ),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('WELCOME BACK', style: TextStyle(color: Color(0xFFEFFAF3), fontSize: 12, fontWeight: FontWeight.w800, letterSpacing: 1.2)),
-          SizedBox(height: 10),
-          Text('Ready to learn\nand explore?', style: TextStyle(color: Colors.white, fontSize: 27, height: 1.13, fontWeight: FontWeight.w800)),
-          SizedBox(height: 12),
-          Text('All your laboratory tools in one warm, focused place.', style: TextStyle(color: Color(0xFFFFEDE2), fontSize: 14, height: 1.35)),
-        ])),
-        Column(children: [
-          Semantics(
-            button: true,
-            label: isDarkMode ? 'Switch to light theme' : 'Switch to dark theme',
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onToggleTheme,
-                borderRadius: BorderRadius.circular(15),
-                child: Container(width: 46, height: 46, decoration: BoxDecoration(color: Colors.white.withValues(alpha: .18), borderRadius: BorderRadius.circular(15)), child: Icon(isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode_rounded, size: 23, color: Colors.white)),
+      child: Row(
+        children: [
+          Container(
+            width: 70,
+            height: 58,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color(0xFFDAE7DF),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Text(
+              number,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF123E35),
               ),
             ),
           ),
-          const SizedBox(height: 9),
-          const Text('Theme', style: TextStyle(color: Color(0xFFFFEDE2), fontSize: 11, fontWeight: FontWeight.w700)),
-        ]),
-      ]),
-    );
-  }
-}
-
-class _HomeOverview extends StatelessWidget {
-  const _HomeOverview({required this.isOnline});
-  final bool isOnline;
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final foreground = Theme.of(context).colorScheme.onSurface;
-    final background = isDark ? const Color(0xFF2A1D1A) : const Color(0xFFFFFCF8);
-    final connectionColor = isOnline ? const Color(0xFF31936D) : const Color(0xFFC8513B);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 14),
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: foreground.withValues(alpha: .09)),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF1F2B29),
+                height: 1.2,
+                letterSpacing: -0.4,
+              ),
+            ),
+          ),
+          const Icon(
+            Icons.arrow_up_right_rounded,
+            size: 26,
+            color: Color(0xFF1F2B29),
+          ),
+        ],
       ),
-      child: Row(children: [
-        const Icon(Icons.auto_awesome_rounded, color: Color(0xFFE18A36), size: 21),
-        const SizedBox(width: 10),
-        const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Ready for today', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800)),
-          SizedBox(height: 2),
-          Text('3 workspaces available', style: TextStyle(fontSize: 12, color: Color(0xFF876C62))),
-        ])),
-        Container(width: 1, height: 31, color: foreground.withValues(alpha: .10)),
-        const SizedBox(width: 13),
-        Icon(Icons.circle, size: 9, color: connectionColor),
-        const SizedBox(width: 6),
-        Text(isOnline ? 'Online' : 'Offline', style: TextStyle(color: connectionColor, fontSize: 12, fontWeight: FontWeight.w800)),
-      ]),
     );
   }
-}
-
-class _LearningNote extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(17),
-        decoration: BoxDecoration(color: const Color(0xFFFFE9C8), borderRadius: BorderRadius.circular(18)),
-        child: const Row(children: [
-          Icon(Icons.lightbulb_rounded, color: Color(0xFF9A6214)),
-          SizedBox(width: 12),
-          Expanded(child: Text('New laboratory activities will appear here as you add them.', style: TextStyle(color: Color(0xFF6D4614), fontSize: 14, height: 1.3))),
-        ]),
-      );
 }

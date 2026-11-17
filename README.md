@@ -1,17 +1,23 @@
-# master_compilation_app
+# Fieldnotes — Lab Journal
 
-A new Flutter project.
+A multi-screen React Native app built with Expo for Activity 5 and as a home for current and future laboratory activities.
 
-## Getting Started
+## Run the app
 
-This project is a starting point for a Flutter application.
+```sh
+cd react-native-app
+npm install
+npm start
+```
 
-A few resources to get you started if this is your first Flutter project:
+Use the Expo CLI prompts to open the app on a device, emulator, or web browser.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## What’s inside
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Home dashboard:** lab progress, searchable and filterable activity cards, profile shortcut, and responsive layouts.
+- **Activity details:** a dedicated overview and learning checklist for each lab.
+- **Settings:** an editable profile and a global light/dark appearance toggle managed with React Context.
+- **About:** project overview and the tools used to build the app.
+- **Reusable UI:** shared activity cards, section headings, and buttons, styled from the global theme.
+
+The React Native app lives in [`react-native-app`](./react-native-app). The Flutter workspace files are separate from this Expo app.
